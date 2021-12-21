@@ -7,7 +7,7 @@
       mpfr: '4.1.0'
       gmp: '6.2.1'
       mpc: '1.2.1'
-    vpcus: '{{ ansible_processor_vcpu | default(2) }}'
+    vpcus: '{{ ansible_processor_vcpus | default(2) }}'
   roles:
     - name: binutils-cross
       vars:
