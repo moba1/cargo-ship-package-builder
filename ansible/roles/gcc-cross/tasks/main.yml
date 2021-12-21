@@ -16,11 +16,11 @@
 - set_fact:
     libraries:
       - name: mpfr
-        src: https://ftp.gnu.org/gnu/mpfr/mpfr-{{ internal_mpfr_version }}.tar.xz
+        src: https://ftp.gnu.org/gnu/mpfr/mpfr-{{ internal_library_version.mpfr }}.tar.xz
       - name: gmp
-        src: https://ftp.gnu.org/gnu/gmp/gmp-{{ internal_gmp_version }}.tar.xz
+        src: https://ftp.gnu.org/gnu/gmp/gmp-{{ internal_library_version.gmp }}.tar.xz
       - name: mpc
-        src: https://ftp.gnu.org/gnu/mpc/mpc-{{ internal_mpc_version }}.tar.gz
+        src: https://ftp.gnu.org/gnu/mpc/mpc-{{ internal_library_version.mpc }}.tar.gz
 - include: library.yml
   loop: "{{ libraries }}"
   loop_control:
