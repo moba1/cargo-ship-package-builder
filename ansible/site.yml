@@ -2,8 +2,18 @@
   gather_facts: false
   vars:
     binutils_version: '2.37'
+    gcc_version: '11.2.0'
+    mpfr_version: '4.1.0'
+    gmp_version: '6.2.1'
+    mpc_version: '1.2.1'
     vpcus: '{{ ansible_processor_vcpu | default(2) }}'
   roles:
     - name: binutils-cross
       vars:
         version: "{{ binutils_version }}"
+    - name: gcc-cross
+      vars:
+        version: "{{ gcc_version }}"
+        internal_mpfr_version: "{{ mpfr_version }}"
+        internal_gmp_version: "{{ gmp_version }}"
+        internal_mpc_version: "{{ mpc_version }}"

@@ -1,0 +1,27 @@
+- name: fetch gcc source code
+  unarchive:
+    src: http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-{{ version }}/gcc-{{ version }}.tar.gz
+    src: https://ftp.gnu.org/gnu/gcc/gcc-{{ version }}/gcc-{{ version }}.tar.gz
+    dest: "{{ dist_dir }}"
+    remote_src: yes
+    list_files: yes
+  register: source
+- set_fact:
+    work_directory: "{{ source.dest }}/{{ source.files[0] }}/build"
+- name: create dist directory
+  file:
+    name: "{{ work_directory }}"
+    state: directory
+
+- set_fact:
+    libraries:
+      - name: mpfr
+        src: https://ftp.gnu.org/gnu/mpfr/mpfr-{{ internal_mpfr_version }}.tar.xz
+      - name: gmp
+        src: https://ftp.gnu.org/gnu/gmp/gmp-{{ internal_gmp_version }}.tar.xz
+      - name: mpc
+        src: https://ftp.gnu.org/gnu/mpc/mpc-{{ internal_mpc_version }}.tar.gz
+- include: library.yml
+  loop: "{{ libraries }}"
+  loop_control:
+    loop_var: library

@@ -1,0 +1,17 @@
+- name: fetch {{ library.name }} source code
+  unarchive:
+    src: "{{ library.src }}"
+    dest: "{{ dist_dir }}"
+    remote_src: yes
+    list_files: yes
+  register: library_source
+
+- set_fact:
+    link:
+      source: "{{ library_source.dest }}/{{ library_source.files[0] }}"
+      destination: "{{ work_directory }}/{{ library.name }}"
+- name: "link: {{ link.source }} -> {{ link.destination }}"
+  file:
+    src: "{{ link.source }}"
+    dest: "{{ link.destination }}"
+    state: link
