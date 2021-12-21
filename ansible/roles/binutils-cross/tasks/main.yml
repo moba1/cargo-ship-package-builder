@@ -26,7 +26,7 @@
     chdir: "{{ work_directory }}"
 
 - name: build
-  command: make -j{{ vpcus + 2 | string }}
+  command: make -j{{ vcpus + 2 | string }}
   args:
     chdir: "{{ work_directory }}"
 

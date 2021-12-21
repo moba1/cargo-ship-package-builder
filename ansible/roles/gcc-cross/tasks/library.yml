@@ -9,7 +9,7 @@
 - set_fact:
     link:
       source: "{{ library_source.dest }}/{{ library_source.files[0] }}"
-      destination: "{{ work_directory }}/{{ library.name }}"
+      destination: "{{ source_directory }}/{{ library.name }}"
 - name: "link: {{ link.source }} -> {{ link.destination }}"
   file:
     src: "{{ link.source }}"

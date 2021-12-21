@@ -7,6 +7,7 @@
     list_files: yes
   register: source
 - set_fact:
+    source_directory: "{{ source.dest }}/{{ source.files[0] }}"
     work_directory: "{{ source.dest }}/{{ source.files[0] }}/build"
 - name: create dist directory
   file:
@@ -25,3 +26,46 @@
   loop: "{{ libraries }}"
   loop_control:
     loop_var: library
+
+- name: change lib64 name
+  replace:
+    path: "{{ source_directory }}/gcc/config/i386/t-linux64"
+    regexp: 'm64=\.\./lib64'
+    replace: 'm64=../lib'
+  when: host_architecture == "x86_64"
+
+- set_fact:
+    configure_options:
+      - "--target={{ target }}"
+      - "--prefix={{ tool_dir }}"
+      - "--with-glibc-version=2.11"
+      - "--with-sysroot={{ root }}"
+      - "--with-newlib"
+      - "--without-headers"
+      - "--enable-initfini-array"
+      - "--disable-nls"
+      - "--disable-shared"
+      - "--disable-multilib"
+      - "--disable-decimal-float"
+      - "--disable-threads"
+      - "--disable-libatomic"
+      - "--disable-libgomp"
+      - "--disable-libquadmath"
+      - "--disable-libssp"
+      - "--disable-libvtv"
+      - "--disable-libstdcxx"
+      - "--enable-language=c,c++"
+- name: configure
+  command: "../configure {{ configure_options | join(' ') }}"
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: build
+  command: make -j{{ vcpus + 2 | string }}
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: install
+  command: make install
+  args:
+    chdir: "{{ work_directory }}"

@@ -7,7 +7,8 @@
       mpfr: '4.1.0'
       gmp: '6.2.1'
       mpc: '1.2.1'
-    vpcus: '{{ ansible_processor_vcpus | default(2) }}'
+    vcpus: '{{ ansible_processor_vcpus | default(2) }}'
+    host_architecture: '{{ ansible_architecture }}'
   roles:
     - name: binutils-cross
       vars:
