@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source /etc/bashrc
+
 ansible-playbook \
   -c local \
   --extra-vars dist_dir="$DIST_DIR" \
