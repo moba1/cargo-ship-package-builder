@@ -1,0 +1,9 @@
+- hosts: 127.0.0.1
+  gather_facts: false
+  vars:
+    binutils_version: '2.37'
+    vpcus: '{{ ansible_processor_vcpu | default(2) }}'
+  roles:
+    - name: binutils-cross
+      vars:
+        version: "{{ binutils_version }}"

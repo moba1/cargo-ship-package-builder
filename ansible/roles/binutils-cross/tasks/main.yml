@@ -1,0 +1,36 @@
+- name: fetch source code
+  unarchive:
+    src: https://mirrors.sarata.com/gnu/binutils/binutils-{{ version }}.tar.gz
+    dest: "{{ dist_dir }}"
+    remote_src: yes
+    list_files: yes
+  register: source
+
+- set_fact:
+    work_directory: "{{ source.dest }}/{{ source.files[0] | dirname }}/build"
+- name: create dist directory
+  file:
+    name: "{{ work_directory }}"
+    state: directory
+
+- set_fact:
+    configure_options:
+      - "--prefix={{ tool_dir }}"
+      - "--with-sysroot={{ root }}"
+      - "--target={{ target }}"
+      - "--disable-nls"
+      - "--disable-werror"
+- name: configure
+  command: "../configure {{ configure_options | join(' ') }}"
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: build
+  command: make -j{{ vpcus + 2 | string }}
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: install
+  command: make install -j1
+  args:
+    chdir: "{{ work_directory }}"
