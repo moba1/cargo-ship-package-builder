@@ -68,3 +68,16 @@
   command: make install
   args:
     chdir: "{{ work_directory }}"
+
+- command: "{{ target }}-gcc -print-libgcc-file-name"
+  register: gcc_file_name
+  changed_when: no
+- set_fact:
+    limits_header_path: "{{ gcc_file_name.stdout | dirname }}/install-tools/include/limits.h"
+- assemble:
+    src: "{{ source_directory }}/gcc"
+    dest: "{{ limits_header_path }}"
+    regexp: "(?:limit(?:x|y)|glimits).h"
+    remote_src: yes
+- debug:
+    msg: "{{ limits_header_path }}"
