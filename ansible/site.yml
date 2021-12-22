@@ -13,7 +13,7 @@
     - name: binutils-pass1
       vars:
         version: "{{ versions.binutils }}"
-    - name: gcc-cross
+    - name: gcc-pass1
       vars:
         version: "{{ versions.gcc }}"
         internal_library_version:
