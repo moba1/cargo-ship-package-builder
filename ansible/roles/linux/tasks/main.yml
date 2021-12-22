@@ -1,0 +1,28 @@
+- set_fact:
+    major_version: "{{ version | regex_replace('^([0-9]+)\\..*', '\\1') }}"
+- name: fetch source code
+  unarchive:
+    src: https://www.kernel.org/pub/linux/kernel/v5.x/linux-5.13.12.tar.xz
+    dest: "{{ dist_dir }}"
+    remote_src: yes
+    list_files: yes
+  register: source
+- set_fact:
+    source_directory: "{{ source.dest }}/{{ source.files[0] }}"
+
+- name: remove all dist files
+  command: make mrproper
+  args:
+    chdir: "{{ source_directory }}"
+
+- set_fact:
+    header_path: "{{ source_directory }}/usr/include"
+- name: create headers
+  command: "{{ item }}"
+  args:
+    chdir: "{{ source_directory }}"
+  with_items:
+    - make headers
+    - find usr/include -name '.*' -delete
+    - rm usr/include/Makefile
+    - cp -r usr/include {{ root }}/usr
