@@ -10,7 +10,7 @@
     vcpus: '{{ ansible_processor_vcpus | default(2) }}'
     host_architecture: '{{ ansible_architecture }}'
   roles:
-    - name: binutils-cross
+    - name: binutils-pass1
       vars:
         version: "{{ versions.binutils }}"
     - name: gcc-cross
