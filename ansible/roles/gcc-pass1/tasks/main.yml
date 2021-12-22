@@ -6,8 +6,15 @@
     list_files: yes
   register: source
 - set_fact:
-    source_directory: "{{ source.dest }}/{{ source.files[0] }}"
-    work_directory: "{{ source.dest }}/{{ source.files[0] }}/build"
+    original_source_directory: "{{ source.dest }}/{{ source.files[0] }}"
+
+- set_fact:
+    source_directory: "{{ original_source_directory | regex_replace('\\/$', '') }}-pass1"
+- name: copy source from {{ original_source_directory }} to {{ source_directory }}
+  command: cp -R "{{ original_source_directory }}" "{{ source_directory }}"
+
+- set_fact:
+    work_directory: "{{ source_directory }}/build"
 - name: create dist directory
   file:
     name: "{{ work_directory }}"
