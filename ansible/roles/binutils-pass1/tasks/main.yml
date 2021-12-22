@@ -1,6 +1,6 @@
 - name: fetch source code
   unarchive:
-    src: https://mirrors.sarata.com/gnu/binutils/binutils-{{ version }}.tar.gz
+    src: https://ftp.gnu.org/gnu/binutils/binutils-{{ version }}.tar.gz
     dest: "{{ dist_dir }}"
     remote_src: yes
     list_files: yes
