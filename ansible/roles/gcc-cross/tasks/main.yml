@@ -1,6 +1,5 @@
 - name: fetch gcc source code
   unarchive:
-    src: http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-{{ version }}/gcc-{{ version }}.tar.gz
     src: https://ftp.gnu.org/gnu/gcc/gcc-{{ version }}/gcc-{{ version }}.tar.gz
     dest: "{{ dist_dir }}"
     remote_src: yes
@@ -54,14 +53,14 @@
       - "--disable-libssp"
       - "--disable-libvtv"
       - "--disable-libstdcxx"
-      - "--enable-language=c,c++"
+      - "--enable-languages=c,c++"
 - name: configure
   command: "../configure {{ configure_options | join(' ') }}"
   args:
     chdir: "{{ work_directory }}"
 
 - name: build
-  command: make -j{{ vcpus + 2 | string }}
+  command: make -j{{ vcpus | int + 2 }}
   args:
     chdir: "{{ work_directory }}"
 

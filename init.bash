@@ -23,6 +23,8 @@ PATH=/usr/bin
 [ ! -L /bin ] && PATH="/bin:\$PATH"
 PATH="\$WORK_ROOT/tools/bin:\$PATH"
 CONFIG_SITE=$WORK_ROOT/usr/share/config.site
-export WORK_ROOT LC_ALL TARGET PATH CONFIG_SITE
+ANSIBLE_STDOUT_CALLBACK=debug
+export WORK_ROOT LC_ALL TARGET PATH CONFIG_SITE ANSIBLE_STDOUT_CALLBACK
 EOF
 
+ln -sf /bin/bash /bin/sh
