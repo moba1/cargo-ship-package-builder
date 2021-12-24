@@ -8,6 +8,7 @@
       gmp: '6.2.1'
       mpc: '1.2.1'
       linux: '5.13.12'
+      glibc: '2.34'
     vcpus: '{{ ansible_processor_vcpus | default(2) }}'
     host_architecture: '{{ ansible_architecture }}'
   roles:
@@ -24,3 +25,7 @@
     - name: linux
       vars:
         version: "{{ versions.linux }}"
+    - name: glibc
+      vars:
+        version: "{{ versions.glibc }}"
+        pass1_gcc_version: "{{ versions.gcc }}"

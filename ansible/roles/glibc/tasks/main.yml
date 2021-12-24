@@ -1,0 +1,76 @@
+- name: link dynamic library loader at i.86
+  file:
+    src: ld-linux.so.2
+    dest: "{{ root }}/lib/ld-lsb.so.3"
+    state: link
+    force: yes
+  when: ansible_architecture is regex('i.86')
+- name: link dynamic library loader at x86_64
+  file:
+    src: ../lib/ld-linux-x86-64.so.2
+    dest: "{{ to }}"
+    state: link
+    force: yes
+  loop:
+    - "{{ root }}/lib64/ld-linux-x86-64.so.2"
+    - "{{ root }}/lib64/ld-lsb-x86-64.so.3"
+  loop_control:
+    loop_var: to
+
+- name: fetch source code
+  unarchive:
+    remote_src: yes
+    src: https://ftp.gnu.org/gnu/glibc/glibc-{{ version }}.tar.xz
+    dest: "{{ dist_dir }}"
+    list_files: yes
+  register: source
+
+- set_fact:
+    source_directory: "{{ source.dest }}/{{ source.files[0] }}"
+- name: fetch patch
+  get_url:
+    url: https://www.linuxfromscratch.org/patches/lfs/11.0/glibc-{{ version }}-fhs-1.patch
+    dest: "{{ dist_dir }}/glibc-{{ version }}-fhs-1.patch"
+  register: patch_file
+- name: patch to GLibc for LHS
+  command: patch -Np1 -i "{{ patch_file.dest }}"
+  args:
+    chdir: "{{ source_directory }}"
+
+- set_fact:
+    work_directory: "{{ source_directory }}/build"
+- name: create working directory
+  file:
+    state: directory
+    path: "{{ work_directory }}"
+
+- name: create configparms
+  copy:
+    content: rootsbindir=/usr/sbin
+    dest: "{{ work_directory }}/configparms"
+
+- set_fact:
+    configure_options:
+      - "--prefix=/usr"
+      - "--host={{ target }}"
+      - "--build=\"$(../scripts/config.guess)\""
+      - "--enable-kernel=3.2"
+      - "--with-headers={{ root }}/usr/include"
+      - "libc_cv_slibdir=/usr/lib"
+- name: configure
+  command: bash -c '../configure {{ configure_options | join(' ') }}'
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: build
+  command: make
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: install
+  command: make DESTDIR={{ root }} install
+  args:
+    chdir: "{{ work_directory }}"
+
+- name: replace hardcoded loader path
+  command: sed '/RTLDLIST=/s@/usr@@g' -i "{{ root }}/usr/bin/ldd"
