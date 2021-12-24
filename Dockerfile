@@ -6,7 +6,7 @@ RUN sed -i -r 's!(deb|deb-src) \S+!\1 mirror://mirrors.ubuntu.com/mirrors.txt!' 
   && apt-get install -y software-properties-common \
   && apt-add-repository --yes --update ppa:ansible/ansible \
   && apt-get install -y \
-    ansible binutils bison diffutils flex \
+    ansible binutils bison diffutils flex gettext \
     gawk m4 patch perl python3 texinfo build-essential git \
   && apt-get clean \
   && rm -Rf /var/lib/apt/lists/*
