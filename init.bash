@@ -28,3 +28,5 @@ export WORK_ROOT LC_ALL TARGET PATH CONFIG_SITE ANSIBLE_STDOUT_CALLBACK
 EOF
 
 ln -sf /bin/bash /bin/sh
+
+ansible-galaxy collection install community.general

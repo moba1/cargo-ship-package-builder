@@ -24,13 +24,15 @@
   command: "../configure {{ configure_options | join(' ') }}"
   args:
     chdir: "{{ work_directory }}"
+    creates: "{{ work_directory }}/Makefile"
 
 - name: build
-  command: make -j{{ vcpus | int + 2 }}
-  args:
+  community.general.make:
     chdir: "{{ work_directory }}"
+    jobs: "{{ vcpus | int + 2 }}"
 
 - name: install
-  command: make install -j1
-  args:
+  community.general.make:
     chdir: "{{ work_directory }}"
+    jobs: 1
+    target: install

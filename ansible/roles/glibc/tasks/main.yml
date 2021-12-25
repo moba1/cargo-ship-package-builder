@@ -61,16 +61,18 @@
   command: bash -c '../configure {{ configure_options | join(' ') }}'
   args:
     chdir: "{{ work_directory }}"
+    creates: "{{ work_directory }}/Makefile"
 
 - name: build
-  command: make
-  args:
+  community.general.make:
     chdir: "{{ work_directory }}"
 
-- name: install
-  command: make DESTDIR={{ root }} install
-  args:
+- name: installl
+  community.general.make:
     chdir: "{{ work_directory }}"
+    target: install
+    params:
+      DESTDIR: "{{ root }}"
 
 - name: replace hardcoded loader path
   command: sed '/RTLDLIST=/s@/usr@@g' -i "{{ root }}/usr/bin/ldd"

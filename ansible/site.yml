@@ -29,3 +29,6 @@
       vars:
         version: "{{ versions.glibc }}"
         pass1_gcc_version: "{{ versions.gcc }}"
+    - name: limits.h
+      vars:
+        gcc_version: "{{ versions.gcc }}"
