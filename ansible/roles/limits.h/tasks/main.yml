@@ -1,2 +1,0 @@
-- name: install limits.h
-  command: "{{ root }}/tools/libexec/gcc/{{ target }}/{{ gcc_version }}/install-tools/mkheaders"
