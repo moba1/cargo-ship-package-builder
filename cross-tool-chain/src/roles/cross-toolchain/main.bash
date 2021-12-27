@@ -45,3 +45,10 @@ SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 )
 
 "$WORK_ROOT/tools/libexec/gcc/$TARGET/$GCC_VERSION/install-tools/mkheaders"
+
+python3 \
+  "$SOURCE_DIR/libstdc++.py" \
+  --dist-dir "$DIST_DIR" \
+  --gcc-version "$GCC_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET"
