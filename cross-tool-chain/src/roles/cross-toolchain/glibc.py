@@ -130,7 +130,8 @@ def main():
     ]
     cmds = [
         [source_dir / "configure", *configure_options],
-        ["make", f"-j{multiprocessing.cpu_count()}"],
+        # since parallel builds may fail, build with `-j1`
+        ["make", "-j1"],
         ["make", f"DESTDIR={args.install_dir}", "install"],
     ]
     for cmd in cmds:
