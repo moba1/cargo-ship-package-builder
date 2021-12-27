@@ -115,6 +115,7 @@ def main():
     os.makedirs(build_dir, exist_ok=True)
 
     with open(source_dir / "configparms", 'w') as configparms:
+        # TODO: remove hard code unix path
         configparms.write("rootsbindir=/usr/sbin")
 
     config_guess = subprocess.run(
@@ -124,11 +125,13 @@ def main():
         stdout=subprocess.PIPE,
     )
     configure_options = [
+        # TODO: remove hard code unix path
         '--prefix=/usr',
         f'--host={args.target}',
         f'--build={config_guess.stdout.strip()}',
         '--enable-kernel=3.2',
         f'--with-headers={args.install_dir / "usr" / "include"}',
+        # TODO: remove hard code unix path
         'libc_cv_slibdir=/usr/lib'
     ]
     cmds = [
