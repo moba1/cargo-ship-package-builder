@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-echo ${BASH_SOURCE[0]}
 SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
 # python3 \
