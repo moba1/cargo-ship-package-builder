@@ -82,7 +82,7 @@ def main():
     )
     configure_options = [
         f"--host={args.target}",
-        f"--build={config_guess.stdout}",
+        f"--build={config_guess.stdout.strip()}",
         # TODO: remove hard code unix path
         "--prefix=/usr",
         "--disable-multilib",
