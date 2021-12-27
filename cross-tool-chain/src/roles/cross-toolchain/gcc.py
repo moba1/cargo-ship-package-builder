@@ -162,6 +162,7 @@ def main():
         ["make", "install"],
     ]
     for cmd in cmds:
+        print(' '.join(map(str, cmd)))
         subprocess.run(
             map(str, cmd),
             check=True,
