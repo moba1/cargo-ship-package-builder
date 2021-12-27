@@ -6,46 +6,40 @@ import os
 import pathlib
 import tempfile
 import multiprocessing
+import urllib.request
+import shutil
 
 
 def fetch_source_code(url: str, extract_path: pathlib.Path):
     print(f'downloading source code from "{url}"...')
-    ## cannot download valid glibc archive by urllib.request.urlopen.
-    ## > EOF position is wrong...
-    ##
-    # with urllib.request.urlopen(url) as response:
-    download_libc_code = subprocess.run(
-        ['curl', '-sSL', url],
-        stdout=subprocess.PIPE,
-        check=True,
-    )
-    print(f'download source code from "{url}"')
-    with tempfile.NamedTemporaryFile() as tmp_file:
-        tmp_file.write(download_libc_code.stdout)
+    with urllib.request.urlopen(url) as response:
+        print(f'download source code from "{url}"')
+        with tempfile.NamedTemporaryFile() as tmp_file:
+            shutil.copyfileobj(response, tmp_file)
 
-        os.makedirs(extract_path, exist_ok=True)
+            os.makedirs(extract_path, exist_ok=True)
 
-        print(f'validate source code downloaded from "{url}" in "{extract_path}"...')
-        ## cannot diff Linux archive because tar command output following error message:
-        ##
-        ## > tar: : Warning: Cannot stat: No such file or directory
-        ##
-        # validate_tar = subprocess.run(
-        #     ['tar', 'df', tmp_file.name, '--strip-components', '1', '--no-same-owner', '--no-same-permissions'],
-        #     stdout=subprocess.DEVNULL,
-        #     cwd=extract_path,
-        # )
-        # if validate_tar.returncode == 0:
-        #     print(f'already valid source code downloaded from "{url}"')
-        #     return
-        # print('invalidate source code')
+            print(f'validate source code downloaded from "{url}" in "{extract_path}"...')
+            ## cannot diff glibc archive because tar command output following error message:
+            ##
+            ## > tar: : Warning: Cannot stat: No such file or directory
+            ##
+            # validate_tar = subprocess.run(
+            #     ['tar', 'df', tmp_file.name, '--strip-components', '1', '--no-same-owner', '--no-same-permissions'],
+            #     stdout=subprocess.DEVNULL,
+            #     cwd=extract_path,
+            # )
+            # if validate_tar.returncode == 0:
+            #     print(f'already valid source code downloaded from "{url}"')
+            #     return
+            # print('invalidate source code')
 
-        print(f'extract source code to "{extract_path}"')
-        subprocess.run(
-            ['tar', 'xf', tmp_file.name, '--strip-components', '1', '-C', extract_path],
-            check=True,
-        )
-        print(f'extracted source code to "{extract_path}"')
+            print(f'extract source code to "{extract_path}"')
+            subprocess.run(
+                ['tar', 'xf', tmp_file.name, '--strip-components', '1', '-C', extract_path],
+                check=True,
+            )
+            print(f'extracted source code to "{extract_path}"')
 
 
 def main():
