@@ -2,37 +2,37 @@
 
 SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
-# python3 \
-#   "$SOURCE_DIR/binutils.py" \
-#   --version "$BINUTILS_VERSION" \
-#   --dist-dir "$DIST_DIR" \
-#   --target "$TARGET" \
-#   --prefix "$CROSS_TOOLCHAIN_DIR" \
-#   --sysroot "$WORK_ROOT"
+python3 \
+  "$SOURCE_DIR/binutils.py" \
+  --version "$BINUTILS_VERSION" \
+  --dist-dir "$DIST_DIR" \
+  --target "$TARGET" \
+  --prefix "$CROSS_TOOLCHAIN_DIR" \
+  --sysroot "$WORK_ROOT"
 
-# python3 \
-#   "$SOURCE_DIR/gcc.py" \
-#   --gcc-version "$GCC_VERSION" \
-#   --mpc-version "$MPC_VERSION" \
-#   --mpfr-version "$MPFR_VERSION" \
-#   --gmp-version "$GMP_VERSION" \
-#   --dist-dir "$DIST_DIR" \
-#   --target "$TARGET" \
-#   --prefix "$CROSS_TOOLCHAIN_DIR" \
-#   --sysroot "$WORK_ROOT"
+python3 \
+  "$SOURCE_DIR/gcc.py" \
+  --gcc-version "$GCC_VERSION" \
+  --mpc-version "$MPC_VERSION" \
+  --mpfr-version "$MPFR_VERSION" \
+  --gmp-version "$GMP_VERSION" \
+  --dist-dir "$DIST_DIR" \
+  --target "$TARGET" \
+  --prefix "$CROSS_TOOLCHAIN_DIR" \
+  --sysroot "$WORK_ROOT"
 
-# python3 \
-#   "$SOURCE_DIR/linux-api-header.py" \
-#   --version "$LINUX_VERSION" \
-#   --dist-dir "$DIST_DIR" \
-#   --install-dir "$WORK_ROOT/usr"
+python3 \
+  "$SOURCE_DIR/linux-api-header.py" \
+  --version "$LINUX_VERSION" \
+  --dist-dir "$DIST_DIR" \
+  --install-dir "$WORK_ROOT/usr"
 
-# python3 \
-#   "$SOURCE_DIR/glibc.py" \
-#   --version "$GLIBC_VERSION" \
-#   --dist-dir "$DIST_DIR" \
-#   --install-dir "$WORK_ROOT" \
-#   --target "$TARGET"
+python3 \
+  "$SOURCE_DIR/glibc.py" \
+  --version "$GLIBC_VERSION" \
+  --dist-dir "$DIST_DIR" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET"
 
 (
   set -e
