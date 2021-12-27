@@ -8,3 +8,10 @@ python3 \
   --version "$M4_VERSION" \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET"
+
+python3 \
+  "$SOURCE_DIR/ncurses.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$NCURSES_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET"
