@@ -52,3 +52,12 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/findutils.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$FINDUTILS_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr" \
+  --localstatedir "/var/lib/located"
