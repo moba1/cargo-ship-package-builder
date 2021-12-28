@@ -76,6 +76,12 @@ def main():
         source_dir,
     )
 
+    subprocess.run(
+        ["sed", "-i", "s/extras//", "Makefile.in"],
+        check=True,
+        cwd=source_dir
+    )
+
     config_guess = subprocess.run(
         [str(source_dir / "config.guess")],
         check=True,
