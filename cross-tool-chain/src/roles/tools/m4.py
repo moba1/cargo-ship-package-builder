@@ -83,7 +83,6 @@ def main():
         stdout=subprocess.PIPE,
     )
     configure_options = [
-        # TODO: remove hard code unix path
         f"--prefix={args.prefix}",
         f"--host={args.target}",
         f"--build={config_guess.stdout.strip()}"

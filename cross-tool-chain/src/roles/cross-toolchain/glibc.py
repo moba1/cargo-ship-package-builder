@@ -131,13 +131,11 @@ def main():
         stdout=subprocess.PIPE,
     )
     configure_options = [
-        # TODO: remove hard code unix path
         f'--prefix={args.prefix}',
         f'--host={args.target}',
         f'--build={config_guess.stdout.strip()}',
         '--enable-kernel=3.2',
         f'--with-headers={args.install_dir / "usr" / "include"}',
-        # TODO: remove hard code unix path
         f'libc_cv_slibdir={args.libc_cv_slibdir}'
     ]
     cmds = [

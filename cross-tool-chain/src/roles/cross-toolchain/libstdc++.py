@@ -95,12 +95,10 @@ def main():
     configure_options = [
         f"--host={args.target}",
         f"--build={config_guess.stdout.strip()}",
-        # TODO: remove hard code unix path
         f"--prefix={args.prefix}",
         "--disable-multilib",
         "--disable-nls",
         "--disable-libstdcxx-pch",
-        # TODO: remove hard code unix path
         f"--with-gxx-include-dir={args.cxx_include_dir}"
     ]
     cmds = [
