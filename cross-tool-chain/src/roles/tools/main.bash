@@ -109,3 +109,11 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/tar.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$TAR_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr"
