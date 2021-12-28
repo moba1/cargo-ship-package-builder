@@ -1,5 +1,4 @@
 import argparse
-from re import sub
 import urllib.request
 import pathlib
 import tempfile
@@ -65,7 +64,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"m4-{args.version}-library"
+    source_dir = args.dist_dir / f"m4-{args.version}-tools"
     fetch_source_code(
         f"https://ftp.gnu.org/gnu/m4/m4-{args.version}.tar.xz",
         source_dir,

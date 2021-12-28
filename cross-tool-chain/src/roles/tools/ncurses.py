@@ -65,7 +65,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"ncurses-{args.version}-library"
+    source_dir = args.dist_dir / f"ncurses-{args.version}-tools"
     fetch_source_code(
         f"https://ftp.gnu.org/gnu/ncurses/ncurses-{args.version}.tar.gz",
         source_dir,
