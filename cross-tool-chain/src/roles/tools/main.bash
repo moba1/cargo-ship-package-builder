@@ -126,3 +126,11 @@ python3 \
   --target "$TARGET" \
   --prefix "/usr" \
   --docdir "/usr/share/share/doc/xz-$XZ_VERSION"
+
+python3 \
+  "$SOURCE_DIR/binutils.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$BINUTILS_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr" \
