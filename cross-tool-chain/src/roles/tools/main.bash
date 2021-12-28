@@ -93,3 +93,11 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/patch.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$PATCH_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr"
