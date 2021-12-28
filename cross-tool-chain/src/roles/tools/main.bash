@@ -9,18 +9,22 @@ python3 \
   --dist-dir "$DIST_DIR" \
   --version "$M4_VERSION" \
   --install-dir "$WORK_ROOT" \
-  --target "$TARGET"
+  --target "$TARGET" \
+  --prefix "/usr"
 
 python3 \
   "$SOURCE_DIR/ncurses.py" \
   --dist-dir "$DIST_DIR" \
   --version "$NCURSES_VERSION" \
   --install-dir "$WORK_ROOT" \
-  --target "$TARGET"
+  --target "$TARGET" \
+  --prefix "/usr" \
+  --man-dir "/usr/share/man"
 
 python3 \
   "$SOURCE_DIR/bash.py" \
   --dist-dir "$DIST_DIR" \
   --version "$BASH_VERSION_" \
   --install-dir "$WORK_ROOT" \
-  --target "$TARGET"
+  --target "$TARGET" \
+  --prefix "/usr"

@@ -63,6 +63,18 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--prefix",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
+    parser.add_argument(
+        "--cxx-include-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     source_dir = args.dist_dir / f"gcc-{args.gcc_version}-for-libc++-cross"
@@ -84,12 +96,12 @@ def main():
         f"--host={args.target}",
         f"--build={config_guess.stdout.strip()}",
         # TODO: remove hard code unix path
-        "--prefix=/usr",
+        f"--prefix={args.prefix}",
         "--disable-multilib",
         "--disable-nls",
         "--disable-libstdcxx-pch",
         # TODO: remove hard code unix path
-        f"--with-gxx-include-dir=/tools/{args.target}/include/c++/{args.gcc_version}"
+        f"--with-gxx-include-dir={args.cxx_include_dir}"
     ]
     cmds = [
         [source_dir / "libstdc++-v3" / "configure", *configure_options],

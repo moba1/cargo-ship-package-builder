@@ -34,7 +34,9 @@ python3 \
   --version "$GLIBC_VERSION" \
   --dist-dir "$DIST_DIR" \
   --install-dir "$WORK_ROOT" \
-  --target "$TARGET"
+  --target "$TARGET" \
+  --prefix "/usr" \
+  --libc-cv-slibdir "/usr/lib"
 
 (
   set -e
@@ -52,4 +54,6 @@ python3 \
   --dist-dir "$DIST_DIR" \
   --gcc-version "$GCC_VERSION" \
   --install-dir "$WORK_ROOT" \
-  --target "$TARGET"
+  --target "$TARGET" \
+  --prefix "/usr" \
+  --cxx-include-dir "/tools/$TARGET/include/c++/$GCC_VERSION"

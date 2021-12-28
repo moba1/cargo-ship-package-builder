@@ -62,6 +62,12 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--prefix",
+        type=pathlib.Path,
+        required=True,
+        action='store',
+    )
     args = parser.parse_args()
 
     source_dir = args.dist_dir / f"bash-{args.version}-tools"
@@ -78,7 +84,7 @@ def main():
     )
     configure_options = [
         # TODO: remove hard code unix path
-        "--prefix=/usr",
+        f"--prefix={args.prefix}",
         f"--host={args.target}",
         f"--build={config_guess.stdout.strip()}",
         "--without-bash-malloc",

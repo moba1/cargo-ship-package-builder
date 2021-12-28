@@ -68,6 +68,18 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--prefix",
+        type=pathlib.Path,
+        required=True,
+        action='store'
+    )
+    parser.add_argument(
+        "--libc-cv-slibdir",
+        type=pathlib.Path,
+        required=True,
+        action='store',
+    )
     args = parser.parse_args()
 
     source_dir = args.dist_dir / f"glibc-{args.version}-cross"
@@ -120,13 +132,13 @@ def main():
     )
     configure_options = [
         # TODO: remove hard code unix path
-        '--prefix=/usr',
+        f'--prefix={args.prefix}',
         f'--host={args.target}',
         f'--build={config_guess.stdout.strip()}',
         '--enable-kernel=3.2',
         f'--with-headers={args.install_dir / "usr" / "include"}',
         # TODO: remove hard code unix path
-        'libc_cv_slibdir=/usr/lib'
+        f'libc_cv_slibdir={args.libc_cv_slibdir}'
     ]
     cmds = [
         [source_dir / "configure", *configure_options],
