@@ -60,7 +60,7 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr" \
-  --localstatedir "/var/lib/located"
+  --localstatedir "/var/lib/locate"
 
 python3 \
   "$SOURCE_DIR/gawk.py" \
