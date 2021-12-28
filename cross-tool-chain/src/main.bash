@@ -7,6 +7,7 @@ SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
 export CROSS_TOOLCHAIN_DIR="$WORK_ROOT/tools"
 
+set -e
 commands=(
   "$SOURCE_DIR/roles/cross-toolchain/main.bash"
   "$SOURCE_DIR/roles/tools/main.bash"
@@ -15,3 +16,4 @@ for command in "${commands[@]}"
 do
   bash "$command"
 done
+set +e
