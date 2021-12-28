@@ -133,4 +133,15 @@ python3 \
   --version "$BINUTILS_VERSION" \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
-  --prefix "/usr" \
+  --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/gcc.py" \
+  --dist-dir "$DIST_DIR" \
+  --gcc-version "$GCC_VERSION" \
+  --mpc-version "$MPC_VERSION" \
+  --mpfr-version "$MPFR_VERSION" \
+  --gmp-version "$GMP_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr"
