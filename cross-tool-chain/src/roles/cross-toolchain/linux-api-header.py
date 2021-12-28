@@ -21,22 +21,6 @@ def fetch_source_code(url: str, extract_path: pathlib.Path):
         tmp_file.write(download_kernel_code.stdout)
 
         os.makedirs(extract_path, exist_ok=True)
-
-        print(f'validating source code downloaded from "{url}" in "{extract_path}"...')
-        ## cannot diff Linux archive because tar command output following error message:
-        ##
-        ## > tar: : Warning: Cannot stat: No such file or directory
-        ##
-        # validate_tar = subprocess.run(
-        #     ['tar', 'df', tmp_file.name, '--strip-components', '1', '--no-same-owner', '--no-same-permissions'],
-        #     # stdout=subprocess.DEVNULL,
-        #     cwd=extract_path,
-        # )
-        # if validate_tar.returncode == 0:
-        #     print(f'already valid source code downloaded from "{url}"')
-        #     return
-        # print('invalidate source code')
-
         print(f'extract source code to "{extract_path}"')
         subprocess.run(
             ['tar', 'xf', tmp_file.name, '--strip-components', '1', '-C', extract_path],

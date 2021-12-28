@@ -16,18 +16,6 @@ def fetch_source_code(url: str, extract_path: pathlib.Path):
             shutil.copyfileobj(response, tmp_file)
 
             os.makedirs(extract_path, exist_ok=True)
-
-            print(f'validate source code downloaded from "{url}" in "{extract_path}"...')
-            validate_tar = subprocess.run(
-                ['tar', 'df', tmp_file.name, '--strip-components', '1', '--no-same-owner', '--no-same-permissions'],
-                stdout=subprocess.DEVNULL,
-                cwd=extract_path,
-            )
-            if validate_tar.returncode == 0:
-                print(f'already valid source code downloaded from "{url}"')
-                return
-            print('invalidate source code')
-
             print(f'extract source code to "{extract_path}"')
             subprocess.run(
                 ['tar', 'xf', tmp_file.name, '--strip-components', '1', '-C', extract_path],
