@@ -77,3 +77,11 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/gzip.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$GZIP_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr"
