@@ -117,3 +117,12 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr"
+
+python3 \
+  "$SOURCE_DIR/xz.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$XZ_VERSION" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET" \
+  --prefix "/usr" \
+  --docdir "/usr/share/share/doc/xz-$XZ_VERSION"
