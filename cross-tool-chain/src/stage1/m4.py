@@ -58,7 +58,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"m4-{args.version}-tools"
+    source_dir = args.dist_dir / f"m4-{args.version}-stage1"
     fetch_source_code(
         f"https://ftp.gnu.org/gnu/m4/m4-{args.version}.tar.xz",
         source_dir,

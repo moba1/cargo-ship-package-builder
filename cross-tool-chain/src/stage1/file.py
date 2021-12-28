@@ -58,7 +58,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"file-{args.version}-tools"
+    source_dir = args.dist_dir / f"file-{args.version}-stage1"
     fetch_source_code(
         f"https://astron.com/pub/file/file-{args.version}.tar.gz",
         source_dir,

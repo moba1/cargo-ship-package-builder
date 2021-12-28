@@ -58,7 +58,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"sed-{args.version}-tools"
+    source_dir = args.dist_dir / f"sed-{args.version}-stage1"
     fetch_source_code(
         f"https://ftp.gnu.org/gnu/sed/sed-{args.version}.tar.xz",
         source_dir,

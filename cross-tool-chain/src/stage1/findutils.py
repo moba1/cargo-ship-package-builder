@@ -64,7 +64,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"findutils-{args.version}-tools"
+    source_dir = args.dist_dir / f"findutils-{args.version}-stage1"
     fetch_source_code(
         f"https://ftp.gnu.org/gnu/findutils/findutils-{args.version}.tar.xz",
         source_dir,

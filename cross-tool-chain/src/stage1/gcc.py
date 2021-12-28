@@ -85,7 +85,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"gcc-{args.gcc_version}-tools"
+    source_dir = args.dist_dir / f"gcc-{args.gcc_version}-stage1"
     sources = [
         Source(
             f"https://ftp.gnu.org/gnu/gcc/gcc-{args.gcc_version}/gcc-{args.gcc_version}.tar.gz",

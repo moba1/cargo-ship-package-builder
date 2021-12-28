@@ -64,7 +64,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source_dir = args.dist_dir / f"xz-{args.version}-tools"
+    source_dir = args.dist_dir / f"xz-{args.version}-stage1"
     fetch_source_code(
         f"https://tukaani.org/xz/xz-{args.version}.tar.xz",
         source_dir,
