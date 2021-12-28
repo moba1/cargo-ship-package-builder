@@ -17,3 +17,10 @@ python3 \
   --version "$NCURSES_VERSION" \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET"
+
+python3 \
+  "$SOURCE_DIR/bash.py" \
+  --dist-dir "$DIST_DIR" \
+  --version "$BASH_VERSION_" \
+  --install-dir "$WORK_ROOT" \
+  --target "$TARGET"
