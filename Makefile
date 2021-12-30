@@ -1,5 +1,6 @@
 CROSS_TOOLCHAIN_IMAGE := cross-toolchain:latest
 STAGE1_IMAGE := stage1:latest
+STAGE2_IMAGE := stage2:latest
 WORKROOT := /work
 ARCH := x86_64
 TARGET := $(ARCH)-lfs-linux-gnu
@@ -17,3 +18,6 @@ all:
 		CROSS_TOOLCHAIN_IMAGE="$(CROSS_TOOLCHAIN_IMAGE)" \
 		TARGET="$(TARGET)" \
 		ARCH="$(ARCH)"
+	make -C stage2 \
+		IMAGE_TAG="$(STAGE2_IMAGE)" \
+		STAGE1_IMAGE="$(STAGE1_IMAGE)"
