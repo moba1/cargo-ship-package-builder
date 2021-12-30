@@ -7,4 +7,10 @@ ENV APP_DIR=/app
 COPY ./*.bash "${APP_DIR}"/
 COPY ./src "${APP_DIR}"/src
 ENV HOME=/root PATH=/usr/bin:/usr/sbin
-ENTRYPOINT [ "/bin/bash", "-l", "+h" ]
+ARG TARGET
+ARG PROCESS_NUMBER
+RUN bash -l +h /app/main.bash \
+  && rm -Rf "${DIST_DIR}" "${APP_DIR}" \
+  && bash -c "rm -Rf /usr/share/{info,man,doc}/*; find /usr/{lib,libexec} -name \\*.la -delete" \
+  && rm -Rf /tools
+CMD [ "/bin/bash" ]

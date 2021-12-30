@@ -26,7 +26,7 @@ build-source:
 		"$(source_image_name)" /bin/bash /app/main.bash /dist-dir
 
 .PHONY: build-image
-build-image: #build-source
+build-image: build-source
 	env DIST_DIR="$(source_dir)/source" bash substage2/fetch-source.bash
 	rm -f substage2/dist; ln -sf "$(dist_dir)" substage2/dist
 	rm -f substage2/source; ln -sf "$(source_dir)/source" substage2/source
@@ -34,13 +34,14 @@ build-image: #build-source
 		tar -ch . | \
 			docker build \
 				--build-arg DIST_DIR=/var/tmp \
+				--build-arg "TARGET=$(TARGET)" \
+				--build-arg "PROCESS_NUMBER=$(process_number)" \
 				-t "$(IMAGE_TAG)" \
 				-
-	docker run \
-		-it --rm \
-		-e "DIST_DIR=/var/tmp" \
-		-e "ARCH=$(ARCH)" \
-		-e "TARGET=$(TARGET)" \
-		-e "PROCESS_NUMBER=$(process_number)" \
-		--privileged \
-		"$(IMAGE_TAG)" /app/main.bash
+	# docker run \
+	# 	-it --rm \
+	# 	-e "DIST_DIR=/var/tmp" \
+	# 	-e "TARGET=$(TARGET)" \
+	# 	-e "PROCESS_NUMBER=$(process_number)" \
+	# 	--privileged \
+	# 	"$(IMAGE_TAG)" /app/main.bash
