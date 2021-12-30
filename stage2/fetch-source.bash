@@ -39,3 +39,19 @@ curl \
 fetch_and_unarchive_source -z -s 0 \
   "https://www.iana.org/time-zones/repository/releases/tzdata$TZDATA_VERSION.tar.gz" \
   "$DIST_DIR/tzdata-$TZDATA_VERSION"
+fetch_and_unarchive_source -J \
+  "https://zlib.net/zlib-$ZLIB_VERSION.tar.xz" \
+  "$DIST_DIR/zlib-$ZLIB_VERSION"
+fetch_and_unarchive_source -z \
+  "https://www.sourceware.org/pub/bzip2/bzip2-$BZIP2_VERSION.tar.gz" \
+  "$DIST_DIR/bzip2-$BZIP2_VERSION"
+curl \
+  -sSL \
+  -o "$DIST_DIR/bzip2-$BZIP2_VERSION-install_docs-1.patch" \
+  "https://www.linuxfromscratch.org/patches/lfs/11.0/bzip2-$BZIP2_VERSION-install_docs-1.patch"
+fetch_and_unarchive_source -J \
+  "https://tukaani.org/xz/xz-$XZ_VERSION.tar.xz" \
+  "$DIST_DIR/xz-$XZ_VERSION"
+fetch_and_unarchive_source -z \
+  "https://github.com/facebook/zstd/releases/download/v$ZSTD_VERSION/zstd-$ZSTD_VERSION.tar.gz" \
+  "$DIST_DIR/zstd-$ZSTD_VERSION"

@@ -23,3 +23,22 @@ python3 \
 
 python3 \
   "$SOURCE_DIR/dynamic-loader.py"
+
+python3 \
+  "$SOURCE_DIR/zlib.py" \
+  --source-dir "$DIST_DIR/zlib-$ZLIB_VERSION"
+
+python3 \
+  "$SOURCE_DIR/bzip2.py" \
+  --source-dir "$DIST_DIR/bzip2-$BZIP2_VERSION" \
+  --patch-file "$DIST_DIR/bzip2-$BZIP2_VERSION-install_docs-1.patch" \
+  --version "$BZIP2_VERSION"
+
+python3 \
+  "$SOURCE_DIR/xz.py" \
+  --source-dir "$DIST_DIR/xz-$XZ_VERSION" \
+  --version "$XZ_VERSION"
+
+python3 \
+  "$SOURCE_DIR/zstd.py" \
+  --source-dir "$DIST_DIR/zstd-$ZSTD_VERSION"

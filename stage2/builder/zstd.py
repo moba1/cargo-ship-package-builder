@@ -1,6 +1,7 @@
 import pathlib
 import subprocess
 import argparse
+import multiprocessing
 
 
 def main():
@@ -13,9 +14,20 @@ def main():
     )
     args = parser.parse_args()
 
+    cmds = [
+        ["make", f"-j{multiprocessing.cpu_count()}"],
+        ["make", "check"],
+        ["make", "prefix=/usr", "install"]
+    ]
+    for cmd in cmds:
+        subprocess.run(
+            cmd,
+            cwd=args.source_dir,
+            check=True,
+        )
+
     subprocess.run(
-        ["cp", "services", "protocols", "/etc"],
-        cwd=args.source_dir,
+        ["rm", "-fv", "/usr/lib/libzstd.a"],
         check=True,
     )
 

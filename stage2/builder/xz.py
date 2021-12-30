@@ -1,0 +1,43 @@
+import pathlib
+import subprocess
+import argparse
+import multiprocessing
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--source-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
+    parser.add_argument(
+        "--version",
+        type=str,
+        action='store',
+        required=True,
+    )
+    args = parser.parse_args()
+
+    configure_options = [
+        "--prefix=/usr",
+        "--disable-static",
+        f"--docdir=/usr/share/doc/xz-{args.version}",
+    ]
+    cmds = [
+        [str(args.source_dir / "configure"), *configure_options],
+        ["make", f"-j{multiprocessing.cpu_count()}"],
+        ["make", "check"],
+        ["make", "install"]
+    ]
+    for cmd in cmds:
+        subprocess.run(
+            cmd,
+            cwd=args.source_dir,
+            check=True,
+        )
+
+
+if __name__ == '__main__':
+    main()
