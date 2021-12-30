@@ -9,6 +9,8 @@ RUN apt-get update \
   && apt-get clean \
   && rm -Rf /var/lib/apt/lists/*
 
+ARG ARCH
+ARG TARGET
 ARG WORK_ROOT
 ENV APP_DIR=/app DIST_DIR=/var/tmp TOOL_DIR="${WORK_ROOT}/tools"
 COPY ./src "${APP_DIR}"
