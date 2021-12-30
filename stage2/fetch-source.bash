@@ -3,11 +3,12 @@ set -e pipefail
 SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
 function fetch_and_unarchive_source() {
-  local OPTIND OPT tar_option
-  while getopts "Jjz" OPT
+  local OPTIND OPT tar_option strip_components=1
+  while getopts "Jjzs:" OPT
   do
     case "$OPT" in
       J|j|z) tar_option="$OPT" ;;
+      s) strip_components="$OPTARG" ;;
       *) exit 1 ;;
     esac
   done
@@ -17,7 +18,7 @@ function fetch_and_unarchive_source() {
   echo "$url"
 
   mkdir -pv "$dest"
-  curl -sSL "$1" | tar "${tar_option}xf" - --strip-components 1 -C "$dest"
+  curl -sSL "$1" | tar "${tar_option}xf" - --strip-components "$strip_components" -C "$dest"
 }
 
 . "$SOURCE_DIR/version.bash"
@@ -28,3 +29,13 @@ fetch_and_unarchive_source -J \
 fetch_and_unarchive_source -z \
   "https://github.com/Mic92/iana-etc/releases/download/$IANAETC_VERSION/iana-etc-$IANAETC_VERSION.tar.gz" \
   "$DIST_DIR/iana-etc-$IANAETC_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/glibc/glibc-$GLIBC_VERSION.tar.xz" \
+  "$DIST_DIR/glibc-$GLIBC_VERSION"
+curl \
+  -sSL \
+  -o "$DIST_DIR/glibc-$GLIBC_VERSION-fhs-1.patch" \
+  "https://www.linuxfromscratch.org/patches/lfs/11.0/glibc-$GLIBC_VERSION-fhs-1.patch"
+fetch_and_unarchive_source -z -s 0 \
+  "https://www.iana.org/time-zones/repository/releases/tzdata$TZDATA_VERSION.tar.gz" \
+  "$DIST_DIR/tzdata-$TZDATA_VERSION"

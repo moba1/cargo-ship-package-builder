@@ -7,12 +7,6 @@ import argparse
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--prefix",
-        type=pathlib.Path,
-        action='store',
-        required=True,
-    )
-    parser.add_argument(
         "--source-dir",
         type=pathlib.Path,
         action='store',
@@ -21,11 +15,10 @@ def main():
     args = parser.parse_args()
 
     subprocess.run(
-        ["cp", "services", "protocols", str(args.prefix)],
-        cwd=args.source_dir
+        ["cp", "services", "protocols", "/etc"],
+        cwd=args.source_dir,
+        check=True,
     )
-
-    shutil.rmtree(args.source_dir)
 
 
 if __name__ == '__main__':
