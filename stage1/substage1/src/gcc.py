@@ -126,7 +126,7 @@ def main():
     libgcc_dir = build_dir / args.target / "libgcc"
     os.makedirs(libgcc_dir, exist_ok=True)
     subprocess.run(
-        ["ln", "-s", "../../../libgcc/gthr-posix.h", libgcc_dir / "gthr-default.h"]
+        ["ln", "-sfvn", "../../../libgcc/gthr-posix.h", libgcc_dir / "gthr-default.h"]
     )
 
     config_guess = subprocess.run(
@@ -167,7 +167,7 @@ def main():
         )
 
     subprocess.run(
-        ["ln", "-sfv", "gcc", str(args.install_dir / "usr" / "bin" / "cc")],
+        ["ln", "-sfvn", "gcc", str(args.install_dir / "usr" / "bin" / "cc")],
         check=True,
     )
 

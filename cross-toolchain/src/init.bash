@@ -8,7 +8,7 @@ case "$ARCH" in
 esac
 for dir in bin lib sbin
 do
-  ln -sfv "usr/$dir" "$WORK_ROOT/"
+  ln -snfv "usr/$dir" "$WORK_ROOT/"
 done
 
 mkdir -pv "$WORK_ROOT/tools"

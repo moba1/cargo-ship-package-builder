@@ -87,13 +87,13 @@ def main():
     architecture = platform.machine()
     if re.fullmatch("i.86", architecture):
         subprocess.run(
-            ["ln", '-sfv', 'ld-linux.so.2', f"{args.instal_dir / 'lib' / 'ld-lsb.so.3'}"],
+            ["ln", '-sfnv', 'ld-linux.so.2', f"{args.instal_dir / 'lib' / 'ld-lsb.so.3'}"],
             check=True,
         )
     elif architecture == "x86_64":
         cmds = [
             ["ln", '-sfv', pathlib.Path("..") / "lib" / "ld-linux-x86-64.so.2", args.install_dir / "lib64"],
-            ["ln", "-sfv", pathlib.Path("..") / "lib" / "ld-linux-x86-64.so.2", args.install_dir / "lib64" / "ld-lsb-x86-64.so.3"]
+            ["ln", "-sfnv", pathlib.Path("..") / "lib" / "ld-linux-x86-64.so.2", args.install_dir / "lib64" / "ld-lsb-x86-64.so.3"]
         ]
         for cmd in cmds:
             subprocess.run(

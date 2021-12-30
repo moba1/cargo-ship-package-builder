@@ -103,7 +103,7 @@ def main():
             check=True,
         )
     subprocess.run(
-        ["ln", "-sfv", "bash", f'{args.install_dir / "bin" / "sh"}'],
+        ["ln", "-sfvn", "bash", f'{args.install_dir / "bin" / "sh"}'],
         check=True,
     )
 
