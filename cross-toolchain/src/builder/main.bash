@@ -9,7 +9,7 @@ python3 \
   --version "$BINUTILS_VERSION" \
   --dist-dir "$DIST_DIR" \
   --target "$TARGET" \
-  --prefix "$CROSS_TOOLCHAIN_DIR" \
+  --prefix "$TOOL_DIR" \
   --sysroot "$WORK_ROOT"
 
 python3 \
@@ -20,7 +20,7 @@ python3 \
   --gmp-version "$GMP_VERSION" \
   --dist-dir "$DIST_DIR" \
   --target "$TARGET" \
-  --prefix "$CROSS_TOOLCHAIN_DIR" \
+  --prefix "$TOOL_DIR" \
   --sysroot "$WORK_ROOT"
 
 python3 \
@@ -47,7 +47,7 @@ python3 \
   readelf -l /tmp/a.out | grep '/ld-linux'
 )
 
-"$WORK_ROOT/tools/libexec/gcc/$TARGET/$GCC_VERSION/install-tools/mkheaders"
+"$TOOL_DIR/libexec/gcc/$TARGET/$GCC_VERSION/install-tools/mkheaders"
 
 python3 \
   "$SOURCE_DIR/libstdc++.py" \
