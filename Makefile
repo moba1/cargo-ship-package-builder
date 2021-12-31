@@ -20,4 +20,5 @@ all:
 	# 	ARCH="$(ARCH)"
 	make -C stage2 \
 		IMAGE_TAG="$(STAGE2_IMAGE)" \
-		STAGE1_IMAGE="$(STAGE1_IMAGE)"
+		STAGE1_IMAGE="$(STAGE1_IMAGE)" \
+		ARCH="$(ARCH)"

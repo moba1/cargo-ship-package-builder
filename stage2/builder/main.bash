@@ -42,3 +42,51 @@ python3 \
 python3 \
   "$SOURCE_DIR/zstd.py" \
   --source-dir "$DIST_DIR/zstd-$ZSTD_VERSION"
+
+python3 \
+  "$SOURCE_DIR/file.py" \
+  --source-dir "$DIST_DIR/file-$FILE_VERSION"
+
+python3 \
+  "$SOURCE_DIR/readline.py" \
+  --source-dir "$DIST_DIR/readline-$READLINE_VERSION" \
+  --version "$READLINE_VERSION"
+
+python3 \
+  "$SOURCE_DIR/m4.py" \
+  --source-dir "$DIST_DIR/m4-$M4_VERSION"
+
+python3 \
+  "$SOURCE_DIR/bc.py" \
+  --source-dir "$DIST_DIR/bc-$BC_VERSION"
+
+python3 \
+  "$SOURCE_DIR/flex.py" \
+  --source-dir "$DIST_DIR/flex-$FLEX_VERSION" \
+  --version "$FLEX_VERSION"
+
+python3 \
+  "$SOURCE_DIR/tcl.py" \
+  --source-dir "$DIST_DIR/tcl-$TCL_VERSION" \
+  --version "$TCL_VERSION"
+
+python3 \
+  "$SOURCE_DIR/expect.py" \
+  --source-dir "$DIST_DIR/expect-$EXPECT_VERSION" \
+  --version "$EXPECT_VERSION"
+
+python3 \
+  "$SOURCE_DIR/dejagnu.py" \
+  --source-dir "$DIST_DIR/dejagnu-$DEJAGNU_VERSION" \
+  --version "$DEJAGNU_VERSION"
+
+python3 \
+  "$SOURCE_DIR/binutils.py" \
+  --source-dir "$DIST_DIR/binutils-$BINUTILS_VERSION" \
+  --patch-file "$DIST_DIR/binutils-$BINUTILS_VERSION-upstream_fix-1.patch"
+
+python3 \
+  "$SOURCE_DIR/gmp.py" \
+  --source-dir "$DIST_DIR/gmp-$GMP_VERSION" \
+  --version "$GMP_VERSION" \
+  --arch "$ARCH"
