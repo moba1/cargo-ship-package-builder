@@ -28,7 +28,7 @@ build-source:
 
 .PHONY: build-image
 build-image: build-source
-	env DIST_DIR="$(source_dir)/source" bash substage2/fetch-source.bash
+	env DIST_DIR="$(source_dir)/source" bash substage2/src/fetch-source.bash
 	rm -f substage2/dist; ln -sf "$(dist_dir)" substage2/dist
 	rm -f substage2/source; ln -sf "$(source_dir)/source" substage2/source
 	cd substage2; \

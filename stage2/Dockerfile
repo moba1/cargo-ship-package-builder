@@ -6,7 +6,6 @@ ARG DIST_DIR
 ARG ARCH
 COPY ./source "${DIST_DIR}"
 ENV APP_DIR=/app
-COPY ./*.bash "${APP_DIR}"/
-COPY ./builder "${APP_DIR}/builder"
+COPY ./src "${APP_DIR}"/
 RUN bash /app/main.bash
 CMD ["/bin/bash"]

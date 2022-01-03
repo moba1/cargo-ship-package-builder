@@ -4,8 +4,7 @@ ARG DIST_DIR
 COPY ./dist/ /
 COPY ./source/ "${DIST_DIR}"
 ENV APP_DIR=/app
-COPY ./*.bash "${APP_DIR}"/
-COPY ./src "${APP_DIR}"/src
+COPY ./src "${APP_DIR}"/
 ENV HOME=/root PATH=/usr/bin:/usr/sbin
 ARG TARGET
 ARG PROCESS_NUMBER
