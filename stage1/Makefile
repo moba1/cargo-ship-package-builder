@@ -22,6 +22,7 @@ build-source:
 	docker run \
 		-it --rm \
 		-e "WORK_ROOT=$(WORKROOT)" \
+		-e "ARCH=$(ARCH)" \
 		-v "$(dist_dir):/dist-dir" \
 		"$(source_image_name)" /bin/bash /app/main.bash /dist-dir
 

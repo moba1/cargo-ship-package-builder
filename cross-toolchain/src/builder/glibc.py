@@ -1,11 +1,9 @@
 import argparse
-import platform
 import re
 import subprocess
 import os
 import pathlib
 import tempfile
-import multiprocessing
 import urllib.request
 import shutil
 
@@ -64,6 +62,12 @@ def main():
         required=True,
         action='store',
     )
+    parser.add_argument(
+        "--arch",
+        type=str,
+        required=True,
+        action='store',
+    )
     args = parser.parse_args()
 
     source_dir = args.dist_dir / f"glibc-{args.version}-cross"
@@ -84,7 +88,7 @@ def main():
             check=True,
         )
 
-    architecture = platform.machine()
+    architecture = args.arch
     if re.fullmatch("i.86", architecture):
         subprocess.run(
             ["ln", '-sfnv', 'ld-linux.so.2', f"{args.instal_dir / 'lib' / 'ld-lsb.so.3'}"],

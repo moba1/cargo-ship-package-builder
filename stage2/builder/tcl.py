@@ -1,5 +1,4 @@
 import pathlib
-import platform
 import subprocess
 import argparse
 import multiprocessing
@@ -20,11 +19,17 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--arch",
+        type=str,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     unix_dir = args.source_dir / "unix"
     configure_cmd = [str(unix_dir / "configure"), "--prefix=/usr", "--mandir=/usr/share/man"]
-    if platform.machine() == "x86_64":
+    if args.arch == "x86_64":
         configure_cmd.append("--enable-64bit")
     cmds = [
         configure_cmd,

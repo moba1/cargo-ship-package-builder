@@ -68,7 +68,8 @@ python3 \
 python3 \
   "$SOURCE_DIR/tcl.py" \
   --source-dir "$DIST_DIR/tcl-$TCL_VERSION" \
-  --version "$TCL_VERSION"
+  --version "$TCL_VERSION" \
+  --arch "$ARCH"
 
 python3 \
   "$SOURCE_DIR/expect.py" \

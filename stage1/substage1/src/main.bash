@@ -144,4 +144,5 @@ python3 \
   --gmp-version "$GMP_VERSION" \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
-  --prefix "/usr"
+  --prefix "/usr" \
+  --arch "$ARCH"

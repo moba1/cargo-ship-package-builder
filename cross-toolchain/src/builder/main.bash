@@ -21,7 +21,8 @@ python3 \
   --dist-dir "$DIST_DIR" \
   --target "$TARGET" \
   --prefix "$TOOL_DIR" \
-  --sysroot "$WORK_ROOT"
+  --sysroot "$WORK_ROOT" \
+  --arch "$ARCH"
 
 python3 \
   "$SOURCE_DIR/linux-api-header.py" \
@@ -36,7 +37,8 @@ python3 \
   --install-dir "$WORK_ROOT" \
   --target "$TARGET" \
   --prefix "/usr" \
-  --libc-cv-slibdir "/usr/lib"
+  --libc-cv-slibdir "/usr/lib" \
+  --arch "$ARCH"
 
 (
   set -e

@@ -7,7 +7,6 @@ import subprocess
 import dataclasses
 import os
 import asyncio
-import platform
 import multiprocessing
 
 
@@ -83,6 +82,12 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--arch",
+        type=str,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     source_dir = args.dist_dir / f"gcc-{args.gcc_version}-stage1"
@@ -114,7 +119,7 @@ def main():
         )
     )
 
-    if platform.machine() == 'x86_64':
+    if args.arch == 'x86_64':
         subprocess.run(
             ['sed', '-e', '/m64=/s/lib64/lib/', '-i', str(source_dir / 'gcc' / 'config' / 'i386' / 't-linux64')],
             check=True,
