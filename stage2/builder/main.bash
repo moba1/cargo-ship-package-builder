@@ -90,3 +90,32 @@ python3 \
   --source-dir "$DIST_DIR/gmp-$GMP_VERSION" \
   --version "$GMP_VERSION" \
   --arch "$ARCH"
+
+python3 \
+  "$SOURCE_DIR/mpfr.py" \
+  --source-dir "$DIST_DIR/mpfr-$MPFR_VERSION" \
+  --version "$MPFR_VERSION"
+
+python3 \
+  "$SOURCE_DIR/mpc.py" \
+  --source-dir "$DIST_DIR/mpc-$MPC_VERSION" \
+  --version "$MPC_VERSION"
+
+python3 \
+  "$SOURCE_DIR/attr.py" \
+  --source-dir "$DIST_DIR/attr-$ATTR_VERSION" \
+  --version "$ATTR_VERSION"
+
+python3 \
+  "$SOURCE_DIR/acl.py" \
+  --source-dir "$DIST_DIR/acl-$ACL_VERSION" \
+  --version "$ACL_VERSION"
+
+python3 \
+  "$SOURCE_DIR/libcap.py" \
+  --source-dir "$DIST_DIR/libcap-$LIBCAP_VERSION" \
+  --version "$LIBCAP_VERSION"
+
+python3 \
+  "$SOURCE_DIR/shadow.py" \
+  --source-dir "$DIST_DIR/shadow-$SHADOW_VERSION"

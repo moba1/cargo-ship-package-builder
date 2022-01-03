@@ -20,17 +20,15 @@ def main():
     )
     args = parser.parse_args()
 
-    configure_options = [
-        "--prefix=/usr",
-        "--with-tcl=/usr/lib",
-        "--enable-shared",
-        "--mandir=/usr/share/man",
-        "--with-tclinclude=/usr/include"
-    ]
+    subprocess.run(
+        ["sed", "-i", "/install -m.*STA/d", "libcap/Makefile"],
+        check=True,
+        cwd=args.source_dir,
+    )
+
     cmds = [
-        [str(args.source_dir / "configure"), *configure_options],
-        ["make", f"-j{multiprocessing.cpu_count()}"],
-        ["make", "install"],
+        ["make", "prefix=/usr", "lib=lib", f"-j{multiprocessing.cpu_count()}"],
+        ["make", "prefix=/usr", "lib=lib", "install"],
     ]
     for cmd in cmds:
         subprocess.run(
@@ -40,7 +38,7 @@ def main():
         )
 
     subprocess.run(
-        ["ln", "-sfv", f"expect{args.version}/libexpect{args.version}", "/usr/lib"],
+        ["bash", "-c", f"chmod -v 755 /usr/lib/lib{{cap,psx}}.so.{args.version}"],
         check=True,
     )
 

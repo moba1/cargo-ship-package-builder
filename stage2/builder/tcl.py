@@ -72,7 +72,6 @@ def main():
         )
 
     cmds = [
-        ["make", "test"],
         ["make", "install"],
         ["chmod", "-v", "u+w", f"/usr/lib/libtcl{major}.{minor}.so"],
         ["make", "install-private-headers"],

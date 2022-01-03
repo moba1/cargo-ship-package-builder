@@ -94,3 +94,18 @@ fetch_and_unarchive_source -J \
 fetch_and_unarchive_source -J \
   "https://www.mpfr.org/mpfr-$MPFR_VERSION/mpfr-$MPFR_VERSION.tar.xz" \
   "$DIST_DIR/mpfr-$MPFR_VERSION"
+fetch_and_unarchive_source -z \
+  "https://ftp.gnu.org/gnu/mpc/mpc-$MPC_VERSION.tar.gz" \
+  "$DIST_DIR/mpc-$MPC_VERSION"
+fetch_and_unarchive_source -z \
+  "https://download.savannah.gnu.org/releases/attr/attr-$ATTR_VERSION.tar.gz" \
+  "$DIST_DIR/attr-$ATTR_VERSION"
+fetch_and_unarchive_source -J \
+  "https://download.savannah.gnu.org/releases/acl/acl-$ACL_VERSION.tar.xz" \
+  "$DIST_DIR/acl-$ACL_VERSION"
+fetch_and_unarchive_source -J \
+  "https://www.kernel.org/pub/linux/libs/security/linux-privs/libcap2/libcap-$LIBCAP_VERSION.tar.xz" \
+  "$DIST_DIR/libcap-$LIBCAP_VERSION"
+fetch_and_unarchive_source -J \
+  "https://github.com/shadow-maint/shadow/releases/download/v$SHADOW_VERSION/shadow-$SHADOW_VERSION.tar.xz" \
+  "$DIST_DIR/shadow-$SHADOW_VERSION"

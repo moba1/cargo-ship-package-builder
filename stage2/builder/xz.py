@@ -28,8 +28,7 @@ def main():
     cmds = [
         [str(args.source_dir / "configure"), *configure_options],
         ["make", f"-j{multiprocessing.cpu_count()}"],
-        ["make", "check"],
-        ["make", "install"]
+        ["make", "install"],
     ]
     for cmd in cmds:
         subprocess.run(

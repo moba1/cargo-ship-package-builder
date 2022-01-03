@@ -31,7 +31,6 @@ def main():
         ["make", "install"],
         ["install", "-v", "-dm755", f"/usr/share/doc/dejagnu-{args.version}"],
         ["bash", "-c", f"install -v -m644 doc/dejagnu.{{html,txt}} /usr/share/doc/dejagnu-{args.version}"],
-        ["make", "check"]
     ]
     for cmd in cmds:
         subprocess.run(

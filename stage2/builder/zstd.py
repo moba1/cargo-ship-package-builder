@@ -16,7 +16,6 @@ def main():
 
     cmds = [
         ["make", f"-j{multiprocessing.cpu_count()}"],
-        ["make", "check"],
         ["make", "prefix=/usr", "install"]
     ]
     for cmd in cmds:

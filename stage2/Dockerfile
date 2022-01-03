@@ -8,6 +8,5 @@ COPY ./source "${DIST_DIR}"
 ENV APP_DIR=/app
 COPY ./*.bash "${APP_DIR}"/
 COPY ./builder "${APP_DIR}/builder"
-RUN bash /app/main.bash \
-  && bash -c "rm -Rf /app /var/tmp*"
+RUN bash /app/main.bash
 CMD ["/bin/bash"]

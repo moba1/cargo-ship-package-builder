@@ -12,12 +12,26 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--version",
+        type=str,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
+    configure_options = [
+        "--prefix=/usr",
+        "--disable-static",
+        "--enable-thread-safe",
+        f"--docdir=/usr/share/doc/mpfr-{args.version}",
+    ]
     cmds = [
-        ["bash", "-c", f"CC=gcc {args.source_dir / 'configure'} --prefix=/usr -G -O3"],
+        [str(args.source_dir / "configure"), *configure_options],
         ["make", f"-j{multiprocessing.cpu_count()}"],
-        ["make", "install"]
+        ["make", "html"],
+        ["make", "install"],
+        ["make", "install-html"],
     ]
     for cmd in cmds:
         subprocess.run(
