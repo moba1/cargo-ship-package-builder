@@ -1,6 +1,7 @@
 import pathlib
 import subprocess
 import argparse
+import multiprocessing
 
 
 def main():
@@ -13,11 +14,17 @@ def main():
     )
     args = parser.parse_args()
 
-    subprocess.run(
-        ["make", "prefix=/usr", "install"],
-        cwd=args.source_dir,
-        check=True,
-    )
+    cmds = [
+        ["perl", "Makefile.PL"],
+        ["make", f"-j{multiprocessing.cpu_count()}"],
+        ["make", "install"]
+    ]
+    for cmd in cmds:
+        subprocess.run(
+            cmd,
+            check=True,
+            cwd=args.source_dir,
+        )
 
 
 if __name__ == '__main__':

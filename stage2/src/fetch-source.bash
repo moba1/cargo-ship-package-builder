@@ -109,3 +109,96 @@ fetch_and_unarchive_source -J \
 fetch_and_unarchive_source -J \
   "https://github.com/shadow-maint/shadow/releases/download/v$SHADOW_VERSION/shadow-$SHADOW_VERSION.tar.xz" \
   "$DIST_DIR/shadow-$SHADOW_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/gcc/gcc-$GCC_VERSION/gcc-$GCC_VERSION.tar.xz" \
+  "$DIST_DIR/gcc-$GCC_VERSION"
+fetch_and_unarchive_source -z \
+  "https://pkg-config.freedesktop.org/releases/pkg-config-$PKGCONFIG_VERSION.tar.gz" \
+  "$DIST_DIR/pkg-config-$PKGCONFIG_VERSION"
+fetch_and_unarchive_source -z \
+  "https://ftp.gnu.org/gnu/ncurses/ncurses-$NCURSES_VERSION.tar.gz" \
+  "$DIST_DIR/ncurses-$NCURSES_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/sed/sed-$SED_VERSION.tar.xz" \
+  "$DIST_DIR/sed-$SED_VERSION"
+fetch_and_unarchive_source -J \
+  "https://sourceforge.net/projects/psmisc/files/psmisc/psmisc-$PSMISC_VERSION.tar.xz" \
+  "$DIST_DIR/psmisc-$PSMISC_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/gettext/gettext-$GETTEXT_VERSION.tar.xz" \
+  "$DIST_DIR/gettext-$GETTEXT_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/bison/bison-$BISON_VERSION.tar.xz" \
+  "$DIST_DIR/bison-$BISON_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/grep/grep-$GREP_VERSION.tar.xz" \
+  "$DIST_DIR/grep-$GREP_VERSION"
+fetch_and_unarchive_source -z \
+  "https://ftp.gnu.org/gnu/bash/bash-$BASH_VERSION_.tar.gz" \
+  "$DIST_DIR/bash-$BASH_VERSION_"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/libtool/libtool-$LIBTOOL_VERSION.tar.xz" \
+  "$DIST_DIR/libtool-$LIBTOOL_VERSION"
+fetch_and_unarchive_source -z \
+  "https://ftp.gnu.org/gnu/gdbm/gdbm-$GDBM_VERSION.tar.gz" \
+  "$DIST_DIR/gdbm-$GDBM_VERSION"
+fetch_and_unarchive_source -z \
+  "https://ftp.gnu.org/gnu/gperf/gperf-$GPERF_VERSION.tar.gz" \
+  "$DIST_DIR/gperf-$GPERF_VERSION"
+fetch_and_unarchive_source -J \
+  "https://prdownloads.sourceforge.net/expat/expat-$EXPAT_VERSION.tar.xz" \
+  "$DIST_DIR/expat-$EXPAT_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/inetutils/inetutils-$INETUTILS_VERSION.tar.xz" \
+  "$DIST_DIR/inetutils-$INETUTILS_VERSION"
+fetch_and_unarchive_source -z \
+  "https://www.greenwoodsoftware.com/less/less-$LESS_VERSION.tar.gz" \
+  "$DIST_DIR/less-$LESS_VERSION"
+fetch_and_unarchive_source -J \
+  "https://www.cpan.org/src/$(echo "$PERL_VERSION" | cut -f1 -d.).0/perl-$PERL_VERSION.tar.xz" \
+  "$DIST_DIR/perl-$PERL_VERSION"
+curl -sSL \
+  -o "$DIST_DIR/perl-$PERL_VERSION-upstream-fixes-1.patch" \
+  "https://www.linuxfromscratch.org/patches/lfs/11.0/perl-$PERL_VERSION-upstream_fixes-1.patch"
+fetch_and_unarchive_source -z \
+  "https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$XMLPARSER_VERSION.tar.gz" \
+  "$DIST_DIR/xml-parser-$XMLPARSER_VERSION"
+fetch_and_unarchive_source -z \
+  "https://launchpad.net/intltool/trunk/$INTLTOOL_VERSION/+download/intltool-$INTLTOOL_VERSION.tar.gz" \
+  "$DIST_DIR/intltool-$INTLTOOL_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/autoconf/autoconf-$AUTOCONF_VERSION.tar.xz" \
+  "$DIST_DIR/autoconf-$AUTOCONF_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/automake/automake-$AUTOMAKE_VERSION.tar.xz" \
+  "$DIST_DIR/automake-$AUTOMAKE_VERSION"
+fetch_and_unarchive_source -J \
+  "https://www.kernel.org/pub/linux/utils/kernel/kmod/kmod-$KMOD_VERSION.tar.xz" \
+  "$DIST_DIR/kmod-$KMOD_VERSION"
+fetch_and_unarchive_source -j \
+  "https://sourceware.org/ftp/elfutils/$ELFUTILS_VERSION/elfutils-$ELFUTILS_VERSION.tar.bz2" \
+  "$DIST_DIR/elfutils-$ELFUTILS_VERSION-for-libelf"
+fetch_and_unarchive_source -z \
+  "https://github.com/libffi/libffi/releases/download/v$LIBFFI_VERSION/libffi-$LIBFFI_VERSION.tar.gz" \
+  "$DIST_DIR/libffi-$LIBFFI_VERSION"
+fetch_and_unarchive_source -z \
+  "https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz" \
+  "$DIST_DIR/openssl-$OPENSSL_VERSION"
+fetch_and_unarchive_source -J \
+  "https://www.python.org/ftp/python/$PYTHON3_VERSION/Python-$PYTHON3_VERSION.tar.xz" \
+  "$DIST_DIR/python3-$PYTHON3_VERSION"
+fetch_and_unarchive_source -j \
+  "https://www.python.org/ftp/python/doc/$PYTHON3_VERSION/python-$PYTHON3_VERSION-docs-html.tar.bz2" \
+  "$DIST_DIR/python3-docs-$PYTHON3_VERSION"
+fetch_and_unarchive_source -z \
+  "https://github.com/ninja-build/ninja/archive/v$NINJA_VERSION/ninja-$NINJA_VERSION.tar.gz" \
+  "$DIST_DIR/ninja-$NINJA_VERSION"
+fetch_and_unarchive_source -z \
+  "https://github.com/mesonbuild/meson/releases/download/$MESON_VERSION/meson-$MESON_VERSION.tar.gz" \
+  "$DIST_DIR/meson-$MESON_VERSION"
+fetch_and_unarchive_source -J \
+  "https://ftp.gnu.org/gnu/coreutils/coreutils-$COREUTILS_VERSION.tar.xz" \
+  "$DIST_DIR/coreutils-$COREUTILS_VERSION"
+curl -sSL \
+  -o "$DIST_DIR/coreutils-$COREUTILS_VERSION-i18n-1.patch" \
+  "https://www.linuxfromscratch.org/patches/lfs/11.0/coreutils-$COREUTILS_VERSION-i18n-1.patch"

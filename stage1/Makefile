@@ -39,3 +39,8 @@ build-image: build-source
 				--build-arg "PROCESS_NUMBER=$(process_number)" \
 				-t "$(IMAGE_TAG)" \
 				-
+
+.PHONY: clean
+clean:
+	rm -Rf "$(source_dir)/dist" "$(source_dir)/source"
+

@@ -4,6 +4,8 @@ set -e
 
 SOURCE_DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
 
+SSL_DIR=/etc/ssl
+
 python3 \
   "$SOURCE_DIR/man-pages.py" \
   --source-dir "$DIST_DIR/man-pages-$MANPAGES_VERSION"
@@ -120,3 +122,134 @@ python3 \
 python3 \
   "$SOURCE_DIR/shadow.py" \
   --source-dir "$DIST_DIR/shadow-$SHADOW_VERSION"
+
+python3 \
+  "$SOURCE_DIR/gcc.py" \
+  --source-dir "$DIST_DIR/gcc-$GCC_VERSION" \
+  --arch "$ARCH" \
+  --version "$GCC_VERSION"
+
+python3 \
+  "$SOURCE_DIR/pkg-config.py" \
+  --source-dir "$DIST_DIR/pkg-config-$PKGCONFIG_VERSION" \
+  --version "$PKGCONFIG_VERSION"
+
+python3 \
+  "$SOURCE_DIR/ncurses.py" \
+  --source-dir "$DIST_DIR/ncurses-$NCURSES_VERSION" \
+  --version "$NCURSES_VERSION"
+
+python3 \
+  "$SOURCE_DIR/sed.py" \
+  --source-dir "$DIST_DIR/sed-$SED_VERSION" \
+  --version "$SED_VERSION"
+
+python3 \
+  "$SOURCE_DIR/psmisc.py" \
+  --source-dir "$DIST_DIR/psmisc-$PSMISC_VERSION"
+
+python3 \
+  "$SOURCE_DIR/gettext_.py" \
+  --source-dir "$DIST_DIR/gettext-$GETTEXT_VERSION" \
+  --version "$GETTEXT_VERSION"
+
+python3 \
+  "$SOURCE_DIR/bison.py" \
+  --source-dir "$DIST_DIR/bison-$BISON_VERSION" \
+  --version "$BISON_VERSION"
+
+python3 \
+  "$SOURCE_DIR/grep.py" \
+  --source-dir "$DIST_DIR/grep-$GREP_VERSION"
+
+python3 \
+  "$SOURCE_DIR/bash.py" \
+  --source-dir "$DIST_DIR/bash-$BASH_VERSION_" \
+  --version "$BASH_VERSION_"
+
+python3 \
+  "$SOURCE_DIR/libtool.py" \
+  --source-dir "$DIST_DIR/libtool-$LIBTOOL_VERSION"
+
+python3 \
+  "$SOURCE_DIR/gdbm.py" \
+  --source-dir "$DIST_DIR/gdbm-$GDBM_VERSION"
+
+python3 \
+  "$SOURCE_DIR/gperf.py" \
+  --source-dir "$DIST_DIR/gperf-$GPERF_VERSION" \
+  --version "$GPERF_VERSION"
+
+python3 \
+  "$SOURCE_DIR/expat.py" \
+  --source-dir "$DIST_DIR/expat-$EXPAT_VERSION" \
+  --version "$EXPAT_VERSION"
+
+python3 \
+  "$SOURCE_DIR/inetutils.py" \
+  --source-dir "$DIST_DIR/inetutils-$INETUTILS_VERSION"
+
+python3 \
+  "$SOURCE_DIR/less.py" \
+  --source-dir "$DIST_DIR/less-$LESS_VERSION"
+
+python3 \
+  "$SOURCE_DIR/perl.py" \
+  --source-dir "$DIST_DIR/perl-$PERL_VERSION" \
+  --version "$PERL_VERSION" \
+  --patch-file "$DIST_DIR/perl-$PERL_VERSION-upstream-fixes-1.patch"
+
+python3 \
+  "$SOURCE_DIR/xml-parser.py" \
+  --source-dir "$DIST_DIR/xml-parser-$XMLPARSER_VERSION"
+
+python3 \
+  "$SOURCE_DIR/intltool.py" \
+  --source-dir "$DIST_DIR/intltool-$INTLTOOL_VERSION" \
+  --version "$INTLTOOL_VERSION"
+
+python3 \
+  "$SOURCE_DIR/autoconf.py" \
+  --source-dir "$DIST_DIR/autoconf-$AUTOCONF_VERSION"
+
+python3 \
+  "$SOURCE_DIR/automake.py" \
+  --source-dir "$DIST_DIR/automake-$AUTOMAKE_VERSION" \
+  --version "$AUTOMAKE_VERSION"
+
+python3 \
+  "$SOURCE_DIR/kmod.py" \
+  --source-dir "$DIST_DIR/kmod-$KMOD_VERSION"
+
+python3 \
+  "$SOURCE_DIR/libelf.py" \
+  --source-dir "$DIST_DIR/elfutils-$ELFUTILS_VERSION-for-libelf"
+
+python3 \
+  "$SOURCE_DIR/libffi.py" \
+  --source-dir "$DIST_DIR/libffi-$LIBFFI_VERSION"
+
+python3 \
+  "$SOURCE_DIR/openssl.py" \
+  --source-dir "$DIST_DIR/openssl-$OPENSSL_VERSION" \
+  --version "$OPENSSL_VERSION" \
+  --ssl-dir "$SSL_DIR"
+
+python3 \
+  "$SOURCE_DIR/python3.py" \
+  --source-dir "$DIST_DIR/python3-$PYTHON3_VERSION" \
+  --doc "$DIST_DIR/python3-docs-$PYTHON3_VERSION" \
+  --version "$PYTHON3_VERSION"
+
+python3 \
+  "$SOURCE_DIR/ninja.py" \
+  --source-dir "$DIST_DIR/ninja-$NINJA_VERSION"
+
+python3 \
+  "$SOURCE_DIR/meson.py" \
+  --source-dir "$DIST_DIR/meson-$MESON_VERSION"
+
+python3 \
+  "$SOURCE_DIR/coreutils.py" \
+  --source-dir "$DIST_DIR/coreutils-$COREUTILS_VERSION" \
+  --patch-file "$DIST_DIR/coreutils-$COREUTILS_VERSION-i18n-1.patch"
