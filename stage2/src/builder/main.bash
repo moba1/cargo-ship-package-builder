@@ -76,10 +76,11 @@ python3 \
   --version "$ATTR_VERSION" \
   --dist-dir "$WORK_ROOT"
 
-# python3 \
-#   "$SOURCE_DIR/acl.py" \
-#   --source-dir "$DIST_DIR/acl-$ACL_VERSION" \
-#   --version "$ACL_VERSION"
+python3 \
+  "$SOURCE_DIR/acl.py" \
+  --source-dir "$DIST_DIR/acl-$ACL_VERSION" \
+  --version "$ACL_VERSION" \
+  --dist-dir "$WORK_ROOT"
 
 # python3 \
 #   "$SOURCE_DIR/libcap.py" \
