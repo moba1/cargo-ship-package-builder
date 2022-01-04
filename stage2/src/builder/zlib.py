@@ -12,10 +12,16 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     cmds = [
-        [str(args.source_dir / "configure"), "--prefix=/usr"],
+        [str(args.source_dir / "configure"), f"--prefix={args.dist_dir / 'usr'}"],
         ["make", f"-j{multiprocessing.cpu_count()}"],
         ["make", "install"],
     ]
@@ -27,7 +33,7 @@ def main():
         )
 
     subprocess.run(
-        ["rm", "-fv", "/usr/lib/libz.a"],
+        ["rm", "-fv", str(args.dist_dir / "usr" / "lib" / "libz.a")],
         cwd=args.source_dir,
     )
 

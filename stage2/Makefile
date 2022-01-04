@@ -5,7 +5,7 @@ source_dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: all
 all:
-	env DIST_DIR="$(source_dir)/source" bash src/fetch-source.bash
+	# env DIST_DIR="$(source_dir)/source" bash src/fetch-source.bash
 	tar -ch . | \
 		docker build \
 		-t "$(IMAGE_TAG)" \

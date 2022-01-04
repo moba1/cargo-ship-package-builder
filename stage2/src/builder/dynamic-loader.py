@@ -1,5 +1,17 @@
+import argparse
+import pathlib
+
 def main():
-    with open("/etc/ld.so.conf", 'w+') as ld_so_conf:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
+    args = parser.parse_args()
+
+    with open(args.dist_dir / 'etc' / 'ld.so.conf', 'w+') as ld_so_conf:
         ld_so_conf.truncate(0)
         lines = [
             "# Begin /etc/ld.so.conf",

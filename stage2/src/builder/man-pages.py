@@ -11,10 +11,16 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     subprocess.run(
-        ["make", "prefix=/usr", "install"],
+        ["make", f"prefix={args.dist_dir / 'usr'}", "install"],
         cwd=args.source_dir,
         check=True,
     )

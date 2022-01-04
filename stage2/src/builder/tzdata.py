@@ -12,12 +12,19 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
-    zoneinfo_dir = "/usr/share/zoneinfo"
-    zoneinfos = ["posix", "right"]
-    for zoneinfo in zoneinfos:
-        os.makedirs(f"{zoneinfo_dir}/{zoneinfo}", exist_ok=True)
+    zoneinfo_dir = args.dist_dir / 'usr' / 'share' / 'zoneinfo'
+    subprocess.run(
+        ["bash", "-c", f"mkdir -pv '{zoneinfo_dir}'/{{posix,right}}"],
+        check=True,
+    )
 
     timezones = [
         "etcetera",
@@ -33,19 +40,19 @@ def main():
     for timezone in timezones:
         zic_args = [
             ("/dev/null", zoneinfo_dir),
-            ("/dev/null", f"{zoneinfo_dir}/posix"),
-            ("leapseconds", f"{zoneinfo_dir}/right"),
+            ("/dev/null", zoneinfo_dir / "posix"),
+            ("leapseconds", zoneinfo_dir / "right"),
         ]
         for zic_arg in zic_args:
             subprocess.run(
-                ["zic", "-L", zic_arg[0], "-d", zic_arg[1], timezone],
+                ["zic", "-L", zic_arg[0], "-d", str(zic_arg[1]), timezone],
                 check=True,
                 cwd=args.source_dir,
             )
 
     cmds = [
-        ["cp", "-v", "zone.tab", "zone1970.tab", "iso3166.tab", zoneinfo_dir],
-        ["zic", "-d", zoneinfo_dir, "-p", "America/New_York"],
+        ["cp", "-v", "zone.tab", "zone1970.tab", "iso3166.tab", str(zoneinfo_dir)],
+        ["zic", "-d", str(zoneinfo_dir), "-p", "America/New_York"],
     ]
     for cmd in cmds:
         subprocess.run(

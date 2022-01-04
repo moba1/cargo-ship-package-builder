@@ -11,10 +11,16 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     subprocess.run(
-        ["cp", "services", "protocols", "/etc"],
+        ["cp", "services", "protocols", str(args.dist_dir / "etc")],
         cwd=args.source_dir,
         check=True,
     )

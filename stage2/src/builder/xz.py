@@ -18,12 +18,18 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.Path,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     configure_options = [
-        "--prefix=/usr",
+        f"--prefix={args.dist_dir / 'usr'}",
         "--disable-static",
-        f"--docdir=/usr/share/doc/xz-{args.version}",
+        f"--docdir={args.dist_dir / 'usr' / 'share' / 'doc' / f'xz-{args.version}'}",
     ]
     cmds = [
         [str(args.source_dir / "configure"), *configure_options],
