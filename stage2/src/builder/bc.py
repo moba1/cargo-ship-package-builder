@@ -8,14 +8,20 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--source-dir",
-        type=pathlib.Path,
+        type=pathlib.PosixPath,
+        action='store',
+        required=True,
+    )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.PosixPath,
         action='store',
         required=True,
     )
     args = parser.parse_args()
 
     cmds = [
-        ["bash", "-c", f"CC=gcc {args.source_dir / 'configure'} --prefix=/usr -G -O3"],
+        ["bash", "-c", f"CC=gcc {args.source_dir / 'configure'} --prefix='{args.dist_dir / 'usr'}' -G -O3"],
         ["make", f"-j{multiprocessing.cpu_count()}"],
         ["make", "install"]
     ]

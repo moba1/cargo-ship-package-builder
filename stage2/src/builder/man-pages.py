@@ -7,13 +7,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--source-dir",
-        type=pathlib.Path,
+        type=pathlib.PosixPath,
         action='store',
         required=True,
     )
     parser.add_argument(
         "--dist-dir",
-        type=pathlib.Path,
+        type=pathlib.PosixPath,
         action='store',
         required=True,
     )

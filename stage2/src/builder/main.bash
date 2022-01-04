@@ -65,60 +65,16 @@ python3 \
   --version "$READLINE_VERSION" \
   --dist-dir "$WORK_ROOT"
 
-# python3 \
-#   "$SOURCE_DIR/m4.py" \
-#   --source-dir "$DIST_DIR/m4-$M4_VERSION"
+python3 \
+  "$SOURCE_DIR/bc.py" \
+  --source-dir "$DIST_DIR/bc-$BC_VERSION" \
+  --dist-dir "$WORK_ROOT"
 
-# python3 \
-#   "$SOURCE_DIR/bc.py" \
-#   --source-dir "$DIST_DIR/bc-$BC_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/flex.py" \
-#   --source-dir "$DIST_DIR/flex-$FLEX_VERSION" \
-#   --version "$FLEX_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/tcl.py" \
-#   --source-dir "$DIST_DIR/tcl-$TCL_VERSION" \
-#   --version "$TCL_VERSION" \
-#   --arch "$ARCH"
-
-# python3 \
-#   "$SOURCE_DIR/expect.py" \
-#   --source-dir "$DIST_DIR/expect-$EXPECT_VERSION" \
-#   --version "$EXPECT_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/dejagnu.py" \
-#   --source-dir "$DIST_DIR/dejagnu-$DEJAGNU_VERSION" \
-#   --version "$DEJAGNU_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/binutils.py" \
-#   --source-dir "$DIST_DIR/binutils-$BINUTILS_VERSION" \
-#   --patch-file "$DIST_DIR/binutils-$BINUTILS_VERSION-upstream_fix-1.patch"
-
-# python3 \
-#   "$SOURCE_DIR/gmp.py" \
-#   --source-dir "$DIST_DIR/gmp-$GMP_VERSION" \
-#   --version "$GMP_VERSION" \
-#   --arch "$ARCH"
-
-# python3 \
-#   "$SOURCE_DIR/mpfr.py" \
-#   --source-dir "$DIST_DIR/mpfr-$MPFR_VERSION" \
-#   --version "$MPFR_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/mpc.py" \
-#   --source-dir "$DIST_DIR/mpc-$MPC_VERSION" \
-#   --version "$MPC_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/attr.py" \
-#   --source-dir "$DIST_DIR/attr-$ATTR_VERSION" \
-#   --version "$ATTR_VERSION"
+python3 \
+  "$SOURCE_DIR/attr.py" \
+  --source-dir "$DIST_DIR/attr-$ATTR_VERSION" \
+  --version "$ATTR_VERSION" \
+  --dist-dir "$WORK_ROOT"
 
 # python3 \
 #   "$SOURCE_DIR/acl.py" \

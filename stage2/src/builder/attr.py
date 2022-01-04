@@ -8,7 +8,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--source-dir",
-        type=pathlib.Path,
+        type=pathlib.PosixPath,
         action='store',
         required=True,
     )
@@ -18,13 +18,19 @@ def main():
         action='store',
         required=True,
     )
+    parser.add_argument(
+        "--dist-dir",
+        type=pathlib.PosixPath,
+        action='store',
+        required=True,
+    )
     args = parser.parse_args()
 
     configure_options = [
-        "--prefix=/usr",
+        f"--prefix={args.dist_dir / 'usr'}",
         "--disable-static",
         "--sysconfdir=/etc",
-        f"--docdir=/usr/share/doc/attr-{args.version}",
+        f"--docdir={args.dist_dir / 'usr' / 'share' / 'doc' / f'attr-{args.version}'}",
     ]
     cmds = [
         [str(args.source_dir / "configure"), *configure_options],
