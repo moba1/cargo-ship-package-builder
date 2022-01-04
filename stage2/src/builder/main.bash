@@ -88,21 +88,6 @@ python3 \
 #   --version "$LIBCAP_VERSION"
 
 # python3 \
-#   "$SOURCE_DIR/shadow.py" \
-#   --source-dir "$DIST_DIR/shadow-$SHADOW_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/gcc.py" \
-#   --source-dir "$DIST_DIR/gcc-$GCC_VERSION" \
-#   --arch "$ARCH" \
-#   --version "$GCC_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/pkg-config.py" \
-#   --source-dir "$DIST_DIR/pkg-config-$PKGCONFIG_VERSION" \
-#   --version "$PKGCONFIG_VERSION"
-
-# python3 \
 #   "$SOURCE_DIR/ncurses.py" \
 #   --source-dir "$DIST_DIR/ncurses-$NCURSES_VERSION" \
 #   --version "$NCURSES_VERSION"
@@ -122,11 +107,6 @@ python3 \
 #   --version "$GETTEXT_VERSION"
 
 # python3 \
-#   "$SOURCE_DIR/bison.py" \
-#   --source-dir "$DIST_DIR/bison-$BISON_VERSION" \
-#   --version "$BISON_VERSION"
-
-# python3 \
 #   "$SOURCE_DIR/grep.py" \
 #   --source-dir "$DIST_DIR/grep-$GREP_VERSION"
 
@@ -134,19 +114,6 @@ python3 \
 #   "$SOURCE_DIR/bash.py" \
 #   --source-dir "$DIST_DIR/bash-$BASH_VERSION_" \
 #   --version "$BASH_VERSION_"
-
-# python3 \
-#   "$SOURCE_DIR/libtool.py" \
-#   --source-dir "$DIST_DIR/libtool-$LIBTOOL_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/gdbm.py" \
-#   --source-dir "$DIST_DIR/gdbm-$GDBM_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/gperf.py" \
-#   --source-dir "$DIST_DIR/gperf-$GPERF_VERSION" \
-#   --version "$GPERF_VERSION"
 
 # python3 \
 #   "$SOURCE_DIR/expat.py" \
@@ -177,15 +144,6 @@ python3 \
 #   --version "$INTLTOOL_VERSION"
 
 # python3 \
-#   "$SOURCE_DIR/autoconf.py" \
-#   --source-dir "$DIST_DIR/autoconf-$AUTOCONF_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/automake.py" \
-#   --source-dir "$DIST_DIR/automake-$AUTOMAKE_VERSION" \
-#   --version "$AUTOMAKE_VERSION"
-
-# python3 \
 #   "$SOURCE_DIR/kmod.py" \
 #   --source-dir "$DIST_DIR/kmod-$KMOD_VERSION"
 
@@ -208,14 +166,6 @@ python3 \
 #   --source-dir "$DIST_DIR/python3-$PYTHON3_VERSION" \
 #   --doc "$DIST_DIR/python3-docs-$PYTHON3_VERSION" \
 #   --version "$PYTHON3_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/ninja.py" \
-#   --source-dir "$DIST_DIR/ninja-$NINJA_VERSION"
-
-# python3 \
-#   "$SOURCE_DIR/meson.py" \
-#   --source-dir "$DIST_DIR/meson-$MESON_VERSION"
 
 # python3 \
 #   "$SOURCE_DIR/coreutils.py" \
